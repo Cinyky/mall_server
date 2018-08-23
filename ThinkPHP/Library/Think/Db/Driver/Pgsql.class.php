@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006-2013 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2006-2014 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -47,13 +47,8 @@ class Pgsql extends Db{
                 E($this->error(false));
             }
             //设置编码
-            pg_set_client_encoding($this->linkID[$linkNum], C('DB_CHARSET'));
-            //$pgInfo = pg_version($this->linkID[$linkNum]);
-            //$dbVersion = $pgInfo['server'];
-            // 标记连接成功
-            $this->connected    =   true;
-            //注销数据库安全信息
-            if(1 != C('DB_DEPLOY_TYPE')) unset($this->config);
+            pg_set_client_encoding($this->linkID[$linkNum], $config['charset']);
+
         }
         return $this->linkID[$linkNum];
     }

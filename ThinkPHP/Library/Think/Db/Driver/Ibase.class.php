@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006-2013 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2006-2014 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -46,14 +46,10 @@ class Ibase extends Db{
             $conn = $pconnect ? 'ibase_pconnect':'ibase_connect';
             // 处理不带端口号的socket连接情况
             $host = $config['hostname'].($config['hostport']?"/{$config['hostport']}":'');
-            $this->linkID[$linkNum] = $conn($host.':'.$config['database'], $config['username'], $config['password'],C('DB_CHARSET'),0,3);
+            $this->linkID[$linkNum] = $conn($host.':'.$config['database'], $config['username'], $config['password'],$config['charset'],0,3);
             if ( !$this->linkID[$linkNum]) {
                 E(ibase_errmsg());
             }
-            // 标记连接成功
-            $this->connected    =   true;
-            // 注销数据库连接配置信息
-            if(1 != C('DB_DEPLOY_TYPE')) unset($this->config);
         }
         return $this->linkID[$linkNum];
     }

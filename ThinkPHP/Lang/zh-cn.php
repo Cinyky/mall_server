@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006-2013 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2006-2014 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -11,9 +11,6 @@
 
 /**
  * ThinkPHP 简体中文语言包
- * @category   Think
- * @package  Lang
- * @author   liu21st <liu21st@gmail.com>
  */
 return array(
     /* 核心语言变量 */  
@@ -50,4 +47,5 @@ return array(
     '_RECORD_HAS_UPDATE_'    => '记录已经更新',
     '_NOT_ALLOW_PHP_'        => '模板禁用PHP代码',
     '_PARAM_ERROR_'          => '参数错误或者未定义',
+    '_ERROR_QUERY_EXPRESS_'  => '错误的查询条件',
 );
