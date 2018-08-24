@@ -7,6 +7,7 @@ class UserController extends Controller {
     }
 
     public function select(){
+        G('begin');
     	$User = D('User');
     	// $users = $User->field('name,age')->limit(10)->select();
 
@@ -20,8 +21,10 @@ class UserController extends Controller {
 
     	// echo json_encode($users);
     	$users['time'] = date("Y/m/d");
-
+        G('end');
     	dump($users);
+        echo G('begin','end','m').'kb <br/>';
+        echo G('begin','end').'s';
     }
 
     public function selectById(){
@@ -99,4 +102,29 @@ class UserController extends Controller {
 
     	$this->redirect('select', array(),2, '页面跳转中...');
     }
+
+
+    public function count(){
+    	$User = D('User');
+    	$user['count'] = $User->count();
+    	$user['maxAge'] = $User->max('age');
+    	$user['minAge'] = $User->where('age>0')->min('age');
+    	$user['avgAge'] = $User->avg('age');
+    	$user['sumAge'] = $User->sum('age');
+
+    	echo json_encode($user);
+    }
+
+    public function subSelect(){
+    	$User = D('User');
+    	$users = $User->scope('page')->order('id ASC')->select(false);
+    	
+    	$users = $User->table($users . ' u')->where('u.id = 2')->select();
+    	
+    	echo json_encode($users);
+
+    }
+
+
+
 }
